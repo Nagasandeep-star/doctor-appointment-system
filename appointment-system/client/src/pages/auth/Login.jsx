@@ -26,7 +26,7 @@ export default function Login() {
       const user = await login(data.email, data.password);
       toast.success(`Welcome back, ${user.name}!`);
       const dest = location.state?.from?.pathname || `/${user.role}`;
-      navigate(dest, { replace: true });
+      setTimeout(() => navigate(dest, { replace: true }), 50);
     } catch (err) {
       toast.error(err.response?.data?.message || 'Login failed');
     }

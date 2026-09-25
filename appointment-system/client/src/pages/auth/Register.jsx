@@ -50,7 +50,9 @@ export default function Register() {
       } else {
         toast.success(`Welcome, ${user.name}!`);
       }
-      navigate(`/${user.role}`, { replace: true });
+      // Use replace-navigate after a brief tick so AuthContext state propagates
+      const dest = `/${user.role}`;
+      setTimeout(() => navigate(dest, { replace: true }), 50);
     } catch (err) {
       const msg = err.response?.data?.message || 'Registration failed';
       const fieldErrors = err.response?.data?.errors || [];

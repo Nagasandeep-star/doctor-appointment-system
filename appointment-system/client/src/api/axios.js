@@ -15,10 +15,12 @@ api.interceptors.request.use((config) => {
 });
 
 // Handle 401 globally — clear token and redirect to login
+// Skip auth endpoints to avoid redirect loop on failed login/register
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401) {
+    const isAuthRoute = error.config?.url?.includes('/auth/');
+    if (error.response?.status === 401 && !isAuthRoute) {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
       window.location.href = '/login';
