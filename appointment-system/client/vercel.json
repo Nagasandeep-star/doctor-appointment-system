@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://doctor-appointment-api.onrender.com/api/:path*"
+      "destination": "https://doctor-appointment-system-23y8.onrender.com/api/:path*"
     },
     {
       "source": "/(.*)",
