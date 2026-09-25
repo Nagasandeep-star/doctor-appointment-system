@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: doctor-appointment-api
+    env: node
+    region: oregon
+    plan: free
+    rootDir: server
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGO_URI
+        sync: false   # set this in Render dashboard
+      - key: JWT_SECRET
+        sync: false   # set this in Render dashboard
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: CLIENT_URL
+        value: http://localhost:5173,https://doctor-appointment-system-azure.vercel.app
+      - key: EMAIL_HOST
+        value: ""
+      - key: EMAIL_PORT
+        value: "587"
+      - key: EMAIL_USER
+        value: ""
+      - key: EMAIL_PASS
+        sync: false
+      - key: EMAIL_FROM
+        value: '"DocAppoint" <noreply@docappoint.com>'
